@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block body %}
+<header class="pt-5">
+    <div class="container pt-4 pt-xl-5">
+        <div class="row pt-5">
+            <div class="col-md-8 text-center text-md-start mx-auto">
+                <div class="text-center">
+                    <h1 class="display-4 fw-bold mb-5">&nbsp;<span class="underline">bagiin</span>.me</h1>
+                    <p class="fs-5 text-muted mb-5">Berbagi tautan menjadi lebih mudah dan gratis</p>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}">
+                        {{message.message.info}} <span style="cursor: pointer
+" id="link">{{message.message.share}} </span>.
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <form class="d-flex justify-content-center flex-wrap" method="post">
+                        {% csrf_token %}
+                        <div class="shadow-lg mb-3"><input class="form-control" type="url" name="url"
+                                                           placeholder="Masukan tautan" style="width: 440px;" required>
+                            <div class="input-group" style="width: 440px;"><span class="input-group-text"><strong>bagiin.me</strong></span><input
+                                    class="form-control" type="text" name="slug" id="slug" required>
+                                <button class="btn btn-primary" type="submit">Shorten</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12 col-lg-10 mx-auto">
+                <div class="text-center position-relative"></div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
